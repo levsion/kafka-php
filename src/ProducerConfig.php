@@ -34,6 +34,7 @@ class ProducerConfig extends Config
         'requestTimeout'  => 6000,
         'produceInterval' => 100,
         'compression'     => Protocol\Protocol::COMPRESSION_NONE,
+        'autoCreateTopic' =>false
     ];
 
     /**
@@ -96,5 +97,14 @@ class ProducerConfig extends Config
         }
 
         static::$options['compression'] = $compression;
+    }
+
+    /**
+     * @param bool 是否自动创建topic
+     * @author levsion
+     */
+    public function setAutoCreateTopic(bool $auto_create): void
+    {
+        static::$options['autoCreateTopic'] = $auto_create;
     }
 }

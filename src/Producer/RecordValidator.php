@@ -6,6 +6,7 @@ namespace Kafka\Producer;
 use Kafka\Exception;
 use function is_string;
 use function trim;
+use Kafka\ProducerConfig;
 
 /**
  * @internal
@@ -18,6 +19,8 @@ final class RecordValidator
      */
     public function validate(array $record, array $topicList): void
     {
+        $autoCreate = ProducerConfig::getInstance()->getautoCreateTopic();
+
         if (! isset($record['topic'])) {
             throw Exception\InvalidRecordInSet::missingTopic();
         }
@@ -30,7 +33,7 @@ final class RecordValidator
             throw Exception\InvalidRecordInSet::missingTopic();
         }
 
-        if (! isset($topicList[$record['topic']])) {
+        if (! isset($topicList[$record['topic']]) && !$autoCreate) {
             throw Exception\InvalidRecordInSet::nonExististingTopic($record['topic']);
         }
 
