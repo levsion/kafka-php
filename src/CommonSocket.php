@@ -34,7 +34,7 @@ abstract class CommonSocket
      *
      * @var int
      */
-    protected $sendTimeoutSec = 300;
+    protected $sendTimeoutSec = 10;
 
     /**
      * Send timeout in microseconds.
@@ -48,7 +48,7 @@ abstract class CommonSocket
      *
      * @var int
      */
-    protected $recvTimeoutSec = 300;
+    protected $recvTimeoutSec = 10;
 
     /**
      * Recv timeout in microseconds
